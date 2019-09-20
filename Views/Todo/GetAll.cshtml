@@ -1,0 +1,35 @@
+﻿@model List<TodoApi.Models.TodoItem>
+
+<table>
+    <thead>
+    <th>Name</th>
+    <th>Is Complete</th>
+    <th>Created At</th>
+    </thead>
+    @for (int i = 0; i < Model.Count; i++)
+    {
+        <tr>
+        <td>
+            @Model[i].Name
+        </td>
+        <td>
+            @Model[i].IsComplete
+        </td>
+            <td>
+                @Model[i].CreatedAt
+            </td>
+            <td>
+                <form action="/api/todo" method="DELETE">
+                    <input type="hidden" value=@Model[i].Id name="id" />
+                    <input type="submit" value="delete">
+                </form>
+            </td>
+        </tr>
+    }
+
+</table>
+
+<form action="/api/todo" method="POST">
+    <input type="text" name="name" />
+    <input type="submit"/>
+</form>
